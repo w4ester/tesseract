@@ -13,6 +13,7 @@ package com.google.scrollview;
 import com.google.scrollview.events.SVEvent;
 import com.google.scrollview.ui.SVImageHandler;
 import com.google.scrollview.ui.SVWindow;
+import io.github.pixee.security.BoundedLineReader;
 import org.piccolo2d.nodes.PImage;
 
 import java.io.BufferedReader;
@@ -81,7 +82,7 @@ public class ScrollView {
 
   /** Read one message from client (assuming there are any). */
   public static String receiveMessage() throws IOException {
-    return in.readLine();
+    return BoundedLineReader.readLine(in, 5_000_000);
   }
 
   /**
